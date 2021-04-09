@@ -73,7 +73,7 @@ abstract class ComercioCorresponsal(val ciudades: List<Ciudad> ) : Vendedor() {
 
  fun provinciasDondeTieneSucursal() = ciudades.map({ciudad -> ciudad.provincia }).toSet()
 
-  override fun esInfluyente() = ciudades.toSet().size >=5 or provinciasDondeTieneSucursal().size >=3 // IMCOMPLETO
+  override fun esInfluyente() = (ciudades.toSet().size >=5) or (provinciasDondeTieneSucursal().size >=3) 
 
 
 
