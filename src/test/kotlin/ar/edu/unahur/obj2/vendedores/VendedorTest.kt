@@ -8,6 +8,8 @@ class VendedorTest : DescribeSpec({
   val misiones = Provincia(1300000)
   val sanIgnacio = Ciudad(misiones)
 
+
+
   describe("Vendedor fijo") {
     val obera = Ciudad(misiones)
     val vendedorFijo = VendedorFijo(obera)
@@ -25,7 +27,8 @@ class VendedorTest : DescribeSpec({
   describe("Viajante") {
     val cordoba = Provincia(2000000)
     val villaDolores = Ciudad(cordoba)
-    val viajante = Viajante(listOf(misiones))
+    val viajante = Viajante(listOf( misiones))
+    val provinciasHabilitadas: List<Provincia>
 
     describe("puedeTrabajarEn") {
       it("una ciudad que pertenece a una provincia habilitada") {
@@ -35,5 +38,15 @@ class VendedorTest : DescribeSpec({
         viajante.puedeTrabajarEn(villaDolores).shouldBeFalse()
       }
     }
+  }
+
+  describe ("Viajante"){
+    val viajante= Viajante
+    describe ("esInfluyente"){
+      it("ProvinciasHabilitadas es mayor o igual a 10000000"){
+        viajante.esInfluyente().ShouldBeTrue()
+      }
+
+      }
   }
 })
