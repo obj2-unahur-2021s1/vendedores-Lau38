@@ -3,16 +3,18 @@ package ar.edu.unahur.obj2.vendedores
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
+import io.kotest.matchers.should
+import ar.edu.unahur.obj2.vendedores.Viajante as Viajante1
 
 class VendedorTest : DescribeSpec({
-  val misiones = Provincia(1300000)
+  val misiones = Provincia(13000000)
   val sanIgnacio = Ciudad(misiones)
 
 
 
   describe("Vendedor fijo") {
     val obera = Ciudad(misiones)
-    val vendedorFijo = VendedorFijo(obera)
+    val vendedorFijo = VendedorFijo(ciudadOrigen = obera)
 
     describe("puedeTrabajarEn") {
       it("su ciudad de origen") {
@@ -22,13 +24,19 @@ class VendedorTest : DescribeSpec({
         vendedorFijo.puedeTrabajarEn(sanIgnacio).shouldBeFalse()
       }
     }
+
+    describe("esInfluyenteVendedor") {
+      it("no es influyente") {
+        vendedorFijo.esInfluyente().shouldBeFalse()
+      }
+    }
   }
 
   describe("Viajante") {
-    val cordoba = Provincia(2000000)
+    val cordoba = Provincia(10000000)
     val villaDolores = Ciudad(cordoba)
-    val viajante = Viajante(listOf( misiones))
-    val provinciasHabilitadas: List<Provincia>
+    val viajante = Viajante1(listOf(misiones))
+    val provinciasHabilitadas : List<Provincia>
 
     describe("puedeTrabajarEn") {
       it("una ciudad que pertenece a una provincia habilitada") {
@@ -38,15 +46,15 @@ class VendedorTest : DescribeSpec({
         viajante.puedeTrabajarEn(villaDolores).shouldBeFalse()
       }
     }
-  }
 
-  describe ("Viajante"){
-    val viajante= Viajante
-    describe ("esInfluyente"){
-      it("ProvinciasHabilitadas es mayor o igual a 10000000"){
-        viajante.esInfluyente().ShouldBeTrue()
+    describe("esInfluyenteViajante") {
+      it("ProvinciasHabilitadas sumada la poblacion es mayor o igual a 10000000") {
+          viajante.esInfluyente().shouldBeTrue()
       }
 
-      }
+    }
   }
-})
+
+  })
+
+

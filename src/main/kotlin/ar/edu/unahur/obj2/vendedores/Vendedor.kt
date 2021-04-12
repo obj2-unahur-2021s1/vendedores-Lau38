@@ -41,7 +41,7 @@ abstract class Vendedor {
 }
 
 // En los parámetros, es obligatorio poner el tipo
-abstract class VendedorFijo(val ciudadOrigen: Ciudad) : Vendedor() {
+ class VendedorFijo(val ciudadOrigen: Ciudad) : Vendedor() {
   override fun puedeTrabajarEn(ciudad: Ciudad): Boolean { // Devuelve un booleano
     return ciudad == ciudadOrigen
   }
@@ -52,16 +52,17 @@ abstract class VendedorFijo(val ciudadOrigen: Ciudad) : Vendedor() {
 }
 
 // A este tipo de List no se le pueden agregar elementos una vez definida
-abstract class Viajante(val provinciasHabilitadas: List<Provincia>) : Vendedor() {
+ class Viajante(val provinciasHabilitadas: List<Provincia>) : Vendedor() {
+
 
   override fun puedeTrabajarEn(ciudad: Ciudad): Boolean { // Devuelve un booleano
-    return provinciasHabilitadas.contains(ciudad.provincia)
+    return  provinciasHabilitadas.contains(ciudad.provincia)
   }
 
 
 
   override fun esInfluyente(): Boolean { // Devuelve un booleano
-     return provinciasHabilitadas.size >= 10000000
+     return (provinciasHabilitadas.sumBy { it.poblacion } ) >= 10000000
 
   }
 }
@@ -71,9 +72,9 @@ abstract class ComercioCorresponsal(val ciudades: List<Ciudad> ) : Vendedor() {
     return ciudades.contains(ciudad)
   }
 
- fun provinciasDondeTieneSucursal() = ciudades.map({ciudad -> ciudad.provincia }).toSet()
+ fun provinciasDondeTieneSucursal() = ciudades.map({it.provincia }).toSet()
 
-  override fun esInfluyente() = (ciudades.toSet().size >=5) or (provinciasDondeTieneSucursal().size >=3) 
+  override fun esInfluyente() = (ciudades.toSet().size >=5) or (provinciasDondeTieneSucursal().size >=3)
 
 
 
