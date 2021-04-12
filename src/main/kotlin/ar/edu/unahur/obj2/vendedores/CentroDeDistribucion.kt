@@ -8,8 +8,7 @@ class CentroDeDistribucion(val vendedoresQueTrabaja : List<Vendedor> , val ciuda
         }
         centroDeDistribu.add(vendedor)
     }
-    fun VendedorEstrella(vendedor : Vendedor) =
-        vendedor.puntajeCertificaciones()
+    fun VendedorEstrella(vendedor : Vendedor) = vendedor.puntajeCertificaciones()
 
     fun puedeCubrirUnaCiudad(ciudad: Ciudad) = vendedoresQueTrabaja.any{v -> v.puedeTrabajarEn(ciudad)}
     fun vendedorGenerico(vendedor : Vendedor) = (vendedor.certificaciones).any{!it.esDeProducto }

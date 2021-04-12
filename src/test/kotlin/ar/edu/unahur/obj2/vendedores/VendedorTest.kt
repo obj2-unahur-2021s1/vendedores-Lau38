@@ -4,6 +4,7 @@ import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.should
+import ar.edu.unahur.obj2.vendedores.ComercioCorresponsal as ComercioCorresponsal1
 import ar.edu.unahur.obj2.vendedores.Viajante as Viajante1
 
 class VendedorTest : DescribeSpec({
@@ -55,6 +56,16 @@ class VendedorTest : DescribeSpec({
     }
   }
 
+  describe("ComercioCorresponsal1"){
+    val SantaFe = Provincia(30000)
+    val rosario =Ciudad(SantaFe)
+    val comercioC = ComercioCorresponsal1(listOf(rosario))
+    describe("puedeTrabajarEn") {
+      it("una ciudad en la que tiene sucursal") {
+        comercioC.puedeTrabajarEn(rosario).shouldBeTrue()
+      }
+    }
+  }
   })
 
 

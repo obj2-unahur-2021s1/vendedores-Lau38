@@ -16,8 +16,7 @@ abstract class Vendedor {
   // Devuelve un booleano
   abstract fun puedeTrabajarEn(ciudad: Ciudad): Boolean
 
-  fun VendedorEstrella(vendedor : Vendedor) =
-     vendedor.puntajeCertificaciones()
+
 
   // En las funciones declaradas con = no es necesario explicitar el tipo
   // Devuelve un booleang
@@ -67,7 +66,7 @@ abstract class Vendedor {
   }
 }
 
-abstract class ComercioCorresponsal(val ciudades: List<Ciudad> ) : Vendedor() {
+ class ComercioCorresponsal(val ciudades: List<Ciudad> ) : Vendedor() {
   override fun puedeTrabajarEn(ciudad: Ciudad): Boolean { // Devuelve un booleano
     return ciudades.contains(ciudad)
   }
