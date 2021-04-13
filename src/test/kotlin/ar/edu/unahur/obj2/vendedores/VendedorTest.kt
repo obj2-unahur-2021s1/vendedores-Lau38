@@ -1,5 +1,6 @@
 package ar.edu.unahur.obj2.vendedores
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
@@ -89,6 +90,27 @@ class VendedorTest : DescribeSpec({
       it("No tiene 5 ciudades") {
         comercioC2.esInfluyente().shouldBeFalse()
       }
+
+    }
+  }
+  describe("CentroDeDistribucion"){
+    val catamarca=Provincia(poblacion = 400000)
+    val sanFernando=Ciudad(catamarca)
+    val vendedor1 = VendedorFijo(sanFernando) //CREO VENDEDOR FIJO CON CIUDAD EN SAN FERNANDO.
+
+    val vendedoresQueTrabaja : List<Vendedor>
+    val centros = mutableListOf<Vendedor>()
+
+
+
+
+    describe("Agregar Vendedor ") {
+      it("Agrego vendedor si ya esta en la lista tira error ") {
+        shouldThrow{
+          centros.agregarVendedor(vendedor1)
+        }
+      }
+
 
     }
   }
