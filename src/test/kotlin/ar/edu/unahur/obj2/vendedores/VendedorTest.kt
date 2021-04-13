@@ -59,11 +59,37 @@ class VendedorTest : DescribeSpec({
   describe("ComercioCorresponsal1"){
     val SantaFe = Provincia(30000)
     val rosario =Ciudad(SantaFe)
-    val comercioC = ComercioCorresponsal1(listOf(rosario))
+    val catamarca=Provincia(poblacion = 400000)
+    val sanFernando=Ciudad(catamarca)
+    val sanJuan=Provincia(poblacion = 35000)
+    val sanjuan=Ciudad(sanJuan)
+    val Cordoba=Provincia(poblacion = 26000)
+    val cordoba=Ciudad(Cordoba)
+    val LaPampa=Provincia(poblacion = 39999)
+    val santaRosa=Ciudad(LaPampa)
+    val LaRioja=Provincia(poblacion = 39999)
+    val larioja=Ciudad(LaRioja)
+
+    val comercioC = ComercioCorresponsal1(listOf(rosario,sanFernando,sanjuan,cordoba,santaRosa))
+    val comercioC2 = ComercioCorresponsal1(listOf(sanjuan,cordoba))
+
     describe("puedeTrabajarEn") {
       it("una ciudad en la que tiene sucursal") {
         comercioC.puedeTrabajarEn(rosario).shouldBeTrue()
       }
+      it("una ciudad en la que no tiene sucursal") {
+        comercioC.puedeTrabajarEn(larioja).shouldBeFalse()
+      }
+    }
+
+    describe("esInfluyenteComercioCorresponsal") {
+      it("debe tener sucursales en al menos 5 ciudades, o bien en al menos 3 provincias") {
+        comercioC.esInfluyente().shouldBeTrue()
+      }
+      it("No tiene 5 ciudades") {
+        comercioC2.esInfluyente().shouldBeFalse()
+      }
+
     }
   }
   })
