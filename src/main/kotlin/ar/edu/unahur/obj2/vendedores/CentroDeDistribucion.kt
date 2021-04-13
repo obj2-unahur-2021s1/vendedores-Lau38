@@ -17,7 +17,7 @@ class CentroDeDistribucion(val ciudadEsta : Ciudad ) {
     fun vendedorGenerico(vendedor : Vendedor) = (vendedor.certificaciones).any{!it.esDeProducto }
     fun esRobusto() = vendedoresQueTrabaja.any { v-> v.esFirme() }
 
-    
+
 }
 
 

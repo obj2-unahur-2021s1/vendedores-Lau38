@@ -1,12 +1,13 @@
 package ar.edu.unahur.obj2.vendedores
 
-import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.should
 import ar.edu.unahur.obj2.vendedores.ComercioCorresponsal as ComercioCorresponsal1
 import ar.edu.unahur.obj2.vendedores.Viajante as Viajante1
+import io.kotest.assertions.throwables.shouldThrow as shouldThrow1
 
 class VendedorTest : DescribeSpec({
   val misiones = Provincia(13000000)
@@ -96,18 +97,17 @@ class VendedorTest : DescribeSpec({
   describe("CentroDeDistribucion"){
     val catamarca=Provincia(poblacion = 400000)
     val sanFernando=Ciudad(catamarca)
-    val vendedor1 = VendedorFijo(sanFernando) //CREO VENDEDOR FIJO CON CIUDAD EN SAN FERNANDO.
-
-    val vendedoresQueTrabaja : List<Vendedor>
-    val centros = mutableListOf<Vendedor>()
+    val vendedor1 = VendedorFijo(sanFernando) //CREO VENDEDOR
+    val centro = CentroDeDistribucion(sanFernando)
 
 
 
 
     describe("Agregar Vendedor ") {
       it("Agrego vendedor si ya esta en la lista tira error ") {
-        shouldThrow{
-          centros.agregarVendedor(vendedor1)
+        centro.vendedoresQueTrabaja.add(vendedor1)
+        shouldThrowAny {
+          centro.agregarVendedor(vendedor1)
         }
       }
 
