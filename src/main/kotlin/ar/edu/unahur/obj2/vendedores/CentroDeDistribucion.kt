@@ -8,7 +8,10 @@ class CentroDeDistribucion(val ciudadEsta : Ciudad ) {
         }
 
     }
-    fun VendedorEstrella(vendedor : Vendedor) = vendedor.puntajeCertificaciones()
+
+
+    fun VendedorEstrella() = vendedoresQueTrabaja.map{ c -> c.puntajeCertificaciones() }.max()
+
 
     fun puedeCubrirUnaCiudad(ciudad: Ciudad) = vendedoresQueTrabaja.any{v -> v.puedeTrabajarEn(ciudad)}
 

@@ -97,9 +97,12 @@ class VendedorTest : DescribeSpec({
   describe("CentroDeDistribucion"){
     val catamarca=Provincia(poblacion = 400000)
     val sanFernando=Ciudad(catamarca)
+    val SantaFe = Provincia(30000)
+    val rosario =Ciudad(SantaFe)
     val vendedor1 = VendedorFijo(sanFernando) //CREO VENDEDOR
     val centro = CentroDeDistribucion(sanFernando)
 
+    val centro1 = CentroDeDistribucion(rosario)
 
 
 
@@ -110,9 +113,20 @@ class VendedorTest : DescribeSpec({
           centro.agregarVendedor(vendedor1)
         }
       }
+    }
 
+    describe("Puede cubrir una ciudad ") {
+      it("Puede cubrir si puede trabajar en esa ciudad ") {
+            centro1.puedeCubrirUnaCiudad(rosario).shouldBeFalse()
+        }
+
+      }
+
+    describe("Vendedor Generico ") {
+      
 
     }
+
   }
   })
 
