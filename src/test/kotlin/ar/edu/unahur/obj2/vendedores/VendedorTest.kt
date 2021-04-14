@@ -123,7 +123,18 @@ class VendedorTest : DescribeSpec({
       }
 
     describe("Vendedor Generico ") {
-      
+      val certifi= Certificacion(false,12222)
+      val certifi2=Certificacion(true,13454)
+
+      it("Es vendedor generico si tiene al menos una certificacion que no es de producto") {
+       vendedor1.certificaciones.add(certifi)
+        centro1.vendedorGenerico(vendedor1).shouldBeTrue()
+      }
+
+      it("No es vendedor generico si no tiene al menos una certificacion que no es de producto") {
+        vendedor1.certificaciones.add(certifi2)
+        centro1.vendedorGenerico(vendedor1).shouldBeFalse()
+      }
 
     }
 
