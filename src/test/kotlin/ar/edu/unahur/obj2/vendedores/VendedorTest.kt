@@ -99,6 +99,8 @@ class VendedorTest : DescribeSpec({
     val sanFernando=Ciudad(catamarca)
     val SantaFe = Provincia(30000)
     val rosario =Ciudad(SantaFe)
+    val Cordoba=Provincia(poblacion = 26000)
+    val cordoba=Ciudad(Cordoba)
     val vendedor1 = VendedorFijo(sanFernando) //CREO VENDEDOR
     val centro = CentroDeDistribucion(sanFernando)
 
@@ -137,6 +139,30 @@ class VendedorTest : DescribeSpec({
       }
 
     }
+
+    describe("Es robusto") { // NO FUNCIONA
+      // CREO CERTIFICACIONES
+      val certifi1= Certificacion(false,30)
+      val certifi2= Certificacion(false,30)
+      val certifi3=Certificacion(true,30)
+      //CREO LOS VENDEDORES
+      val vendedor1 = VendedorFijo(sanFernando)
+      val vendedor2 = VendedorFijo(rosario)
+      val vendedor3 = VendedorFijo(sanIgnacio)
+      // CREO EL CENTRO DE DISTRIBUCION
+      val centroRobusto = CentroDeDistribucion(cordoba)
+
+      it("Si al menos de sus 3 vendedores sea firme") {
+        // LE AGREGO LAS CERTIFICAICONES A LOS VENDEDORES
+        vendedor1.agregarCertificacion(certifi1)
+        vendedor2.agregarCertificacion(certifi2)
+        vendedor3.agregarCertificacion(certifi3)
+        centroRobusto.esRobusto().shouldBeTrue()
+      }
+
+    }
+
+
 
   }
   })

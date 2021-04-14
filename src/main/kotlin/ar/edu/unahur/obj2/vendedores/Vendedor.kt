@@ -31,7 +31,7 @@ class Certificacion (val esDeProducto: Boolean, val puntaje: Int)
     certificaciones.add(certificacion)
   }
   //Devuelve un booleano
-  fun esFirme() = this.puntajeCertificaciones() >= 30 // Devuelve un booleano Int
+  fun esFirme() = this.puntajeCertificaciones() >= 30 // Devuelve un booleano
 
   fun certificacionesDeProducto() = certificaciones.count { it.esDeProducto }
   fun otrasCertificaciones() = certificaciones.count { !it.esDeProducto }
